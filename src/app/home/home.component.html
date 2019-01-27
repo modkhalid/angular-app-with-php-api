@@ -18,6 +18,9 @@
         (click)="deletePost(item)"
       >delete</button>
       <button class="mr-auto btn-warning btn"><a [routerLink]="['../update',item.id]">update</a></button>
+<br>
+      <button class="mr-auto btn-light btn "><a [routerLink]="['/comment',item.id]">Comment</a></button>
+      <button class="mr-auto btn-light btn "><a [routerLink]="['/view',item.id]">View more</a></button>
     </li>
   <!-- </ng-template> -->
 </ul>

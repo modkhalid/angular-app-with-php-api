@@ -1,3 +1,4 @@
+import { CommentService } from './common/comment.servie';
 // import { AllService } from './common/all.service';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './common/api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateComponent } from './update/update.component';
+import { CommentComponent } from './comment/comment.component';
+import { ViewComponent } from './view/view.component';
 // import { getComponent } from '@angular/core/src/render3';
 
 @NgModule({
@@ -22,7 +25,9 @@ import { UpdateComponent } from './update/update.component';
     NavbarComponent,
     PostComponent,
     GetComponent,
-    UpdateComponent
+    UpdateComponent,
+    CommentComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,
@@ -39,10 +44,14 @@ import { UpdateComponent } from './update/update.component';
         path:"post",
         component:PostComponent
       },
-      // {
-      //   path:'home/:userid',
-      //   component:GetComponent
-      // },
+      {
+        path:'comment/:userid',
+        component:CommentComponent
+      },
+      {
+        path:'view/:userid',
+        component:ViewComponent
+      },
       {
         path:'update/:userid',
         component:UpdateComponent
@@ -55,7 +64,8 @@ import { UpdateComponent } from './update/update.component';
   ],
   providers: [
     // AllService
-    ApiService
+    ApiService,
+    CommentService
   ],
   bootstrap: [AppComponent]
 })

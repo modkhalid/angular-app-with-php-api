@@ -15,7 +15,7 @@ export class AllService {
 
    }
   
-  get(args:any){
+  get(args?:any){
     // console.log(args)
     if(args)
       return this.http.get(this.url+"get/"+args)
@@ -36,6 +36,11 @@ export class AllService {
   //       // response object is Alway in json array
   //       catchError(this.ErrorHandlerMethod))
   // }
+  getPost(post){
+    return this.http.post(this.url+"get/",post).pipe(
+      catchError(this.ErrorHandlerMethod)
+    )
+  }
 
   create(post){
     // console.log("e")
@@ -68,6 +73,5 @@ export class AllService {
     return this.http.post(this.url+"/update",post).pipe(
       catchError(this.ErrorHandlerMethod)
     )
-    // console.log(post)
   }
 }

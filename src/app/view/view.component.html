@@ -1,0 +1,28 @@
+<div *ngFor="let post of posts">
+  <div class="card">
+    <div class="card-header">
+      Article
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{post.header}}</h5>
+      <p class="card-text">{{post.body}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-10">
+      <ul class="list-group">
+        <li class="list-group-item"
+          *ngFor="let comment of comments">
+          <h5><b>{{comment.name}}</b></h5>
+          <p>{{comment.comment}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
