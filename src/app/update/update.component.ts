@@ -48,14 +48,19 @@ export class UpdateComponent implements OnInit {
     )
 
 
-  onClick(){
-    console.log(this.articles)
+ update(){
+    // console.log(this.articles)
+    // console.log(this.form.value)
+    this.service.update(JSON.stringify(this.form.value))
+      .subscribe(
+        response=>{
+          console.log(response)
+        }
+      )
   }
     
 
   ngOnInit() {      
-      console.log(this.articles)
-      
       
   }
 

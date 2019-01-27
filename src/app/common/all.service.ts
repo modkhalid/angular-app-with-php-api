@@ -62,4 +62,12 @@ export class AllService {
     } 
     return throwError(new AppError(error))
   }
+
+
+  update(post){
+    return this.http.post(this.url+"/update",post).pipe(
+      catchError(this.ErrorHandlerMethod)
+    )
+    // console.log(post)
+  }
 }

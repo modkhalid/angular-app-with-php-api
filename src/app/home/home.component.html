@@ -8,12 +8,16 @@
       <!-- <button class="btn btn-default btn-sm"
         (click)=(updatePost(item))
       >Update</button>  -->
-      <a [routerLink]="['../update',item.id]">update</a>
+      
+      
       <b>{{item.header}}</b>
+      <br>
       {{item.body}}
+      <br>
       <button class="btn btn-danger btn-sm"
         (click)="deletePost(item)"
       >delete</button>
+      <button class="mr-auto btn-warning btn"><a [routerLink]="['../update',item.id]">update</a></button>
     </li>
   <!-- </ng-template> -->
 </ul>

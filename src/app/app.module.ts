@@ -46,6 +46,10 @@ import { UpdateComponent } from './update/update.component';
       {
         path:'update/:userid',
         component:UpdateComponent
+      },
+      {
+        path:'**',
+        component:GetComponent
       }
     ])
   ],
