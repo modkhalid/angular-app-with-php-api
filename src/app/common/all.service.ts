@@ -15,30 +15,44 @@ export class AllService {
 
    }
   
-  get(){
-    return this.http.get(this.url+"get/")
+  get(args:any){
+    // console.log(args)
+    if(args)
+      return this.http.get(this.url+"get/"+args)
+      // console.log(this.url+"get/"+args)
+    else
+      return this.http.get(this.url+"get/")
+      // console.log("abcd")
+    // console.log(args)
   }
 
+  // create(post){
+  //   // console.log(post);
+  //   return this.http.post(this.url+"post/",post)
+  //   .pipe(
+  //       //********dont use map for json  */
+  //       // map(response=>{response.json()}),
+  //       //after angular two
+  //       // response object is Alway in json array
+  //       catchError(this.ErrorHandlerMethod))
+  // }
+
   create(post){
-    // console.log(post);
-    return this.http.post(this.url+"post/",post)
-    .pipe(
-        //********dont use map for json  */
-        // map(response=>{response.json()}),
-        //after angular two
-        // response object is Alway in json array
-        catchError(this.ErrorHandlerMethod))
+    // console.log("e")
+    return this.http.post(this.url+"post/",post).pipe(
+      catchError(this.ErrorHandlerMethod)
+    )
   }
 
   // update(post){
   //   return this.http.patch(this.url+"/"+post.id,{isread:true})
   // }
 
-  // delete(post){
-  //   return this.http.delete(this.url+"/"+post.id)
-  //     .pipe(catchError(this.ErrorHandlerMethod))
+  delete(post){
+    return this.http.delete(this.url+"/delete/"+post.id)
+      .pipe(catchError(this.ErrorHandlerMethod))
     
-  // }
+  }
   private ErrorHandlerMethod(error:Response){
     if (error.status == 404) {
       return throwError(new NotFoundError(error))   

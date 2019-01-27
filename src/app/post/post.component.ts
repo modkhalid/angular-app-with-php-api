@@ -1,3 +1,4 @@
+import { ApiService } from './../common/api.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:ApiService) { }
 
   ngOnInit() {
+  }
+
+  onSubmit(data){
+    // console.log(JSON.parse(JSON.stringify(data.value)));
+    this.service.create(JSON.stringify(data.value))
+    .subscribe(
+      response=>{
+        console.log(response)
+      }
+    )
+    data.reset();
+
+
   }
 
 }

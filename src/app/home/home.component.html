@@ -1,28 +1,19 @@
-<!-- <div class="container">
-    <ul class="list-group">
-        <li 
-            class="list-group-item"
-            *ngFor="let item of posts"
-            >
-            {{item.id}} <b>AND</b> {{item.word}}
-        </li>
-    </ul>
-</div> -->
-<!-- <input type="text"
-  (keyup.enter)="addPost(ele)"
-  #ele
-  class="form-control"
-> -->
 <ul class="list-group">
-  <li 
-    *ngFor="let item of posts"
-    class="list-group-item">
-    <button class="btn btn-default btn-sm"
-      (click)=(updatePost(item))
-    >Update</button> 
-    {{item.word}}
-    <button class="btn btn-danger btn-sm"
-      (click)="deletePost(item)"
-    >delete</button>
-  </li>
+
+  
+  
+    <li 
+      *ngFor="let item of posts"
+      class="list-group-item">
+      <!-- <button class="btn btn-default btn-sm"
+        (click)=(updatePost(item))
+      >Update</button>  -->
+      <a [routerLink]="['../update',item.id]">update</a>
+      <b>{{item.header}}</b>
+      {{item.body}}
+      <button class="btn btn-danger btn-sm"
+        (click)="deletePost(item)"
+      >delete</button>
+    </li>
+  <!-- </ng-template> -->
 </ul>

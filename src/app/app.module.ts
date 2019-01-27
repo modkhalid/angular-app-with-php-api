@@ -11,6 +11,8 @@ import { PostComponent } from './post/post.component';
 import { GetComponent } from './get/get.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './common/api.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UpdateComponent } from './update/update.component';
 // import { getComponent } from '@angular/core/src/render3';
 
 @NgModule({
@@ -19,12 +21,15 @@ import { ApiService } from './common/api.service';
     HomeComponent,
     NavbarComponent,
     PostComponent,
-    GetComponent
+    GetComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path:"home",
@@ -34,9 +39,13 @@ import { ApiService } from './common/api.service';
         path:"post",
         component:PostComponent
       },
+      // {
+      //   path:'home/:userid',
+      //   component:GetComponent
+      // },
       {
-        path:'home/:userid',
-        component:GetComponent
+        path:'update/:userid',
+        component:UpdateComponent
       }
     ])
   ],

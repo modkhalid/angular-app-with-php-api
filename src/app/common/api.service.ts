@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiService extends AllService{
     constructor(http:HttpClient){
-        super('http://localhost:1337/khalid/help/',http);
+        super('http://localhost:1337/khalid/article/',http);
     }
 }
 

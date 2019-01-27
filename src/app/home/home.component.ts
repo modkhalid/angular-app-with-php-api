@@ -1,5 +1,6 @@
 import { ApiService } from './../common/api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ErrorHandler } from '@angular/core';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'home',
@@ -17,6 +18,16 @@ export class HomeComponent implements OnInit {
       this.posts=response;
 
     });
+  }
+
+  deletePost(item){
+    this.posts.splice(this.posts.indexOf(item),1);
+    this.service.delete(item).subscribe(
+      response=>{
+        console.log(response)
+      }
+    )
+      
   }
 
 }

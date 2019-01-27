@@ -1,0 +1,52 @@
+<!-- <div *ngFor="let article of articles" >
+  <b>{{article.id}}</b><br>
+<h5>{{article.body}}</h5>
+<p>{{article.header}}</p>
+</div>
+ 
+ {{article|json:'5' }} --> 
+
+ <!-- (ngSubmit)="update()" -->
+ <form [formGroup]="form" class="container" >
+ 
+<div class="form-group">
+    <label for="header">Header</label>
+    <input 
+        formControlName="header"
+        id="header" 
+        type="text" 
+        class="form-control">
+</div>
+      <!-- <div class="alert alert-danger" 
+          *ngIf="myGroup.get('username').touched && !myGroup.get('username').valid" >
+              <p *ngIf="username.errors?.minlength;">please provideusername whith min length of 5</p>
+              <p *ngIf="username.errors?.InvalidWhiteSpace">
+                  white srace error
+              </p>
+              <p *ngIf="username.errors?.Unique">
+                  Unique Name
+              </p>
+      </div> -->
+      <!-- <div class="alert alert-success"
+          *ngIf="username.pending"
+      >
+          checking for Unique
+      </div> -->
+<div class="form-group">
+    <label for="body">body</label>
+    <textarea 
+        formControlName="body"
+        id="body" 
+        cols="30" rows="10"
+        class="form-control">
+    </textarea>
+</div>
+<!-- <div class="alert alert-danger"
+  *ngIf="!myGroup.get('password').valid && password.touched"
+>password is required</div> -->
+<button class="btn btn-primary" [disabled]="!form.valid" type="submit">Sign Up</button>
+
+</form>
+
+
+<!-- <button class="btn btn-primary" (click)="onClick()">click me</button> -->
