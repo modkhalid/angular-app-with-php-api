@@ -13,7 +13,7 @@ import { Response } from 'selenium-webdriver/http';
 })
 export class AllService {
 
-  constructor(private url,private http:HttpClient) {
+  constructor(protected url,protected http:HttpClient) {
 
    }
   
@@ -25,27 +25,22 @@ export class AllService {
 
   }
 
-
   getPost(post){
     return this.http.post(this.url+"get/",post).pipe(
       catchError(this.ErrorHandlerMethod),
       map(response=>{
-        if(this instanceof AuthService){
+        
           if(response[0].token){
             localStorage.setItem('token',response[0].token)
             return true;
           }
           return false;
-        }else{
-          return response;
-        } 
+        
       })
       
     )
   }
-
-
-
+ 
   create(post){
     // console.log("e")
     return this.http.post(this.url+"post/",post).pipe(
@@ -68,7 +63,7 @@ export class AllService {
   }
 
 
-  private ErrorHandlerMethod(error:Response){
+  protected ErrorHandlerMethod(error:Response){
     if (error.status == 404) {
       return throwError(new NotFoundError(error))   
     }

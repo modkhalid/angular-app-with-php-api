@@ -1,3 +1,4 @@
+import { AuthGuard } from './common/auth-guard.service';
 import { AuthService } from './common/auth.service';
 import { LogiService } from './common/login.service';
 import { CommentService } from './common/comment.servie';
@@ -17,6 +18,7 @@ import { UpdateComponent } from './update/update.component';
 import { CommentComponent } from './comment/comment.component';
 import { ViewComponent } from './view/view.component';
 import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { LoginComponent } from './login/login.component';
     UpdateComponent,
     CommentComponent,
     ViewComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,11 @@ import { LoginComponent } from './login/login.component';
       {
         path:'comment/:userid',
         component:CommentComponent
+      },
+      {
+        path:'admin',
+        component:AdminComponent,
+        canActivate:[AuthGuard]
       },
       {
         path:'view/:userid',
@@ -71,7 +79,8 @@ import { LoginComponent } from './login/login.component';
     AuthService,
     ApiService,
     CommentService,
-    LogiService
+    LogiService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

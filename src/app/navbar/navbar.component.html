@@ -7,13 +7,18 @@
   <li class="nav-item">
     <a class="nav-link " routerLinkActive="active current" routerLink="post">Post</a>
   </li>
+
+  <li class="nav-item" >
+    <a class="nav-link " routerLinkActive="active current" routerLink="admin">Admin</a>
+  </li>
   
-  <li class="nav-item" *ngIf="!isLogin">
+  <li class="nav-item" *ngIf="!service.isLogin()">
     <a class="nav-link " routerLinkActive="active current" routerLink="login">Login</a>
   </li>
-  <li class="nav-item"  *ngIf="isLogin">
-    <a class="nav-link " routerLinkActive="active current" (click)="logout()">Logout</a>
+  <li class="nav-item"  *ngIf="service.isLogin()">
+    <a class="nav-link " routerLinkActive="active current" (click)="service.logout()">Logout</a>
   </li>
+ 
 
   
 </ul>
