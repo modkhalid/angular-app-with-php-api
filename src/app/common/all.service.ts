@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { BadError } from '../common/bad-error';
 import { AppError } from '../common/app-error';
 import { NotFoundError } from '../common/not-found-error';
@@ -5,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, map} from 'rxjs/operators';
+import { Response } from 'selenium-webdriver/http';
 // corsproxy
 @Injectable({
   providedIn: 'root'
@@ -16,31 +18,33 @@ export class AllService {
    }
   
   get(args?:any){
-    // console.log(args)
     if(args)
       return this.http.get(this.url+"get/"+args)
-      // console.log(this.url+"get/"+args)
     else
       return this.http.get(this.url+"get/")
-      // console.log("abcd")
-    // console.log(args)
+
   }
 
-  // create(post){
-  //   // console.log(post);
-  //   return this.http.post(this.url+"post/",post)
-  //   .pipe(
-  //       //********dont use map for json  */
-  //       // map(response=>{response.json()}),
-  //       //after angular two
-  //       // response object is Alway in json array
-  //       catchError(this.ErrorHandlerMethod))
-  // }
+
   getPost(post){
     return this.http.post(this.url+"get/",post).pipe(
-      catchError(this.ErrorHandlerMethod)
+      catchError(this.ErrorHandlerMethod),
+      map(response=>{
+        if(this instanceof AuthService){
+          if(response[0].token){
+            localStorage.setItem('token',response[0].token)
+            return true;
+          }
+          return false;
+        }else{
+          return response;
+        } 
+      })
+      
     )
   }
+
+
 
   create(post){
     // console.log("e")
@@ -49,15 +53,21 @@ export class AllService {
     )
   }
 
-  // update(post){
-  //   return this.http.patch(this.url+"/"+post.id,{isread:true})
-  // }
+
+  update(post){
+    return this.http.post(this.url+"/update",post).pipe(
+      catchError(this.ErrorHandlerMethod)
+    )
+  }
+
 
   delete(post){
     return this.http.delete(this.url+"/delete/"+post.id)
       .pipe(catchError(this.ErrorHandlerMethod))
     
   }
+
+
   private ErrorHandlerMethod(error:Response){
     if (error.status == 404) {
       return throwError(new NotFoundError(error))   
@@ -68,10 +78,4 @@ export class AllService {
     return throwError(new AppError(error))
   }
 
-
-  update(post){
-    return this.http.post(this.url+"/update",post).pipe(
-      catchError(this.ErrorHandlerMethod)
-    )
-  }
 }

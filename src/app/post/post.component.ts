@@ -15,6 +15,7 @@ export class PostComponent implements OnInit {
 
   onSubmit(data){
     // console.log(JSON.parse(JSON.stringify(data.value)));
+    console.log(JSON.stringify(data.value))
     this.service.create(JSON.stringify(data.value))
     .subscribe(
       response=>{

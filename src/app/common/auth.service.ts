@@ -3,8 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class CommentService extends AllService{
+export class AuthService extends AllService{
     constructor(http:HttpClient){
-        super('http://18.217.122.64/comment/',http);
+        super('http://localhost:1337/khalid/login/',http);
     }
+
+
 }
+

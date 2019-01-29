@@ -1,9 +1,9 @@
+import { AuthService } from './common/auth.service';
+import { LogiService } from './common/login.service';
 import { CommentService } from './common/comment.servie';
-// import { AllService } from './common/all.service';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,7 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateComponent } from './update/update.component';
 import { CommentComponent } from './comment/comment.component';
 import { ViewComponent } from './view/view.component';
-// import { getComponent } from '@angular/core/src/render3';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import { ViewComponent } from './view/view.component';
     GetComponent,
     UpdateComponent,
     CommentComponent,
-    ViewComponent
+    ViewComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -57,15 +58,20 @@ import { ViewComponent } from './view/view.component';
         component:UpdateComponent
       },
       {
+        path:'login',
+        component:LoginComponent
+      },
+      {
         path:'**',
         component:GetComponent
       }
     ])
   ],
   providers: [
-    // AllService
+    AuthService,
     ApiService,
-    CommentService
+    CommentService,
+    LogiService
   ],
   bootstrap: [AppComponent]
 })
