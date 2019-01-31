@@ -12,25 +12,25 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   form;
-  isLogin=true;
-  constructor(private router:ActivatedRoute ,private route:Router, private fb:FormBuilder,private service:AuthService) { 
-    this.form=fb.group({
-      email:[],
-      password:[]
-    })
+  isLogin = true;
+  constructor(private router: ActivatedRoute , private route: Router, private fb: FormBuilder, private service: AuthService) {
+    this.form = fb.group({
+      email: [],
+      password: []
+    });
   }
-  login(){
+  login() {
     this.service.get(JSON.stringify(this.form.value))
       .subscribe(
-        res=>{
-          if(res){
-            let url=this.router.snapshot.queryParamMap.get('returnUrl')
-            this.route.navigate([url || '/home'])
-          }else{
-            this.isLogin=false
+        res => {
+          if (res) {
+            const url = this.router.snapshot.queryParamMap.get('returnUrl');
+            this.route.navigate([url || '/home']);
+          } else {
+            this.isLogin = false;
           }
         }
-      )
+      );
   }
 
   ngOnInit() {
